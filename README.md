@@ -1,4 +1,4 @@
-# Databricks Course
+# Databricks Course README
 
 This repository contains all the source code needed for the Databricks course. It includes notebooks, scripts, and supporting materials organized to guide you through each module of the course.
 

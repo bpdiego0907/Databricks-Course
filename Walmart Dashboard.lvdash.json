@@ -1,0 +1,168 @@
+{
+  "datasets": [
+    {
+      "name": "4264f838",
+      "displayName": "walmart_dataset",
+      "config": {
+        "version": "1.1",
+        "source": "workspace.default.walmart_dataset",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "fc0fbe00",
+      "displayName": "gold_monthly_sales",
+      "config": {
+        "version": "1.1",
+        "source": "workspace.default.gold_monthly_sales",
+        "dimensions": [
+          {
+            "expr": "source.*"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "73feae30",
+      "displayName": "Dashboard",
+      "layout": [
+        {
+          "widget": {
+            "name": "b54717b0",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4264f838",
+                  "fields": [
+                    {
+                      "name": "Holiday_Flag",
+                      "expression": "`Holiday_Flag`"
+                    },
+                    {
+                      "name": "Weekly_Sales",
+                      "expression": "`Weekly_Sales`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "widgetType": "forecast-line",
+              "encodings": {
+                "x": {
+                  "fieldName": "Holiday_Flag",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "original": {
+                    "fieldName": "Weekly_Sales"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "4b2be753",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fc0fbe00",
+                  "fields": [
+                    {
+                      "name": "Month",
+                      "expression": "`Month`"
+                    },
+                    {
+                      "name": "Monthly_Sales",
+                      "expression": "`Monthly_Sales`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "widgetType": "forecast-line",
+              "encodings": {
+                "x": {
+                  "fieldName": "Month",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "original": {
+                    "fieldName": "Monthly_Sales"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
